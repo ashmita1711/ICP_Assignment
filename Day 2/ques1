@@ -1,0 +1,15 @@
+//Merge Sorted Array (Leetcode Ques 88)
+
+//Brute Force Approach
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int index = m;
+        for (int i : nums2) {
+            nums1[index++] = i;
+        }
+        Arrays.sort(nums1, 0, m + n);
+    }
+}
+
+//Optimal Approach
