@@ -1,0 +1,28 @@
+//Longest Repeating Character Replacement (LeetCode 424)
+
+//Brute Force
+
+
+//Optimal Approach
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int[] count=new int[26];
+        int left =0;
+        int max= 0;
+        int ans =0;
+        for (int i=0;i<s.length();i++) {
+            char c=s.charAt(i);
+            count[c - 'A']++;
+            max=Math.max(max, count[c - 'A']);
+
+            int window =i-left+1;
+            if (window - max> k) {
+                count[s.charAt(left) - 'A']--;
+                left++;
+            }
+            ans = Math.max(ans,i-left+1);
+        }
+        return ans;
+    }
+}

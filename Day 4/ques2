@@ -1,0 +1,30 @@
+//Permutation in String(LeetCode 567)
+
+//Brute Force
+
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        List<String> p=new ArrayList<>();
+        permute("",s1,p);
+        for (String i : p) {
+            if (s2.contains(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private void permute(String pre, String str, List<String> result) {
+        if (str.length() == 0) {
+            result.add(pre);
+            return;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            permute(pre + str.charAt(i), 
+                    str.substring(0, i) + str.substring(i + 1), 
+                    result);
+        }
+    }
+}
+
+
+//Optimal Approach

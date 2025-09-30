@@ -1,0 +1,25 @@
+//Longest Substring Without Repeating Characters(LeetCode #3)
+
+//Brute Force Approach
+
+
+//Optimal Approach
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n=s.length();
+        Set<Character> set=new HashSet<>();
+        int left=0;
+        int max=0;
+        for(int right=0;right<n;right++){
+            char c=s.charAt(right);
+            while(set.contains(c)){
+                set.remove(s.charAt(left));
+                left++;
+            }
+            set.add(c);
+            max=Math.max(max,right-left+1);
+        }
+        return max;
+    }
+}
