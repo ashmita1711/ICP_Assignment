@@ -1,0 +1,33 @@
+//Spiral Matrix (Leetcode Q-54)
+
+//Brute Force Approach
+
+import java.util.*;
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int m = matrix.length, n = matrix[0].length;
+        boolean[][] visited = new boolean[m][n];
+        List<Integer> result = new ArrayList<>();
+        int[][] dirs = {{0,1}, {1,0}, {0,-1}, {-1,0}};
+        int dirIndex = 0; 
+        int row = 0, col = 0;
+        for (int i = 0; i < m * n; i++) {
+            result.add(matrix[row][col]);
+            visited[row][col] = true;
+            int nextRow = row + dirs[dirIndex][0];
+            int nextCol = col + dirs[dirIndex][1];
+            if (nextRow < 0 || nextRow >= m || nextCol < 0 || nextCol >= n || visited[nextRow][nextCol]) {
+                dirIndex = (dirIndex + 1) % 4;
+                nextRow = row + dirs[dirIndex][0];
+                nextCol = col + dirs[dirIndex][1];
+            }
+            row = nextRow;
+            col = nextCol;
+        }
+        return result;
+    }
+}
+
+
+// Optimal Approach
