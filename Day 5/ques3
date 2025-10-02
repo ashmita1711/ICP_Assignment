@@ -1,0 +1,17 @@
+//Queue Reconstruction by Height(LeetCode 406)
+
+//Brute Force Approach
+
+
+//Optimal Approach
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (a,b) -> { if(a[0]!=b[0])  return b[0]-a[0]; return a[1] - b[1]; });
+        List<int[]> ans = new ArrayList<>();
+        for (int[] i : people) {
+            int position = i[1];
+            ans.add(position, i);
+        }
+        return ans.toArray(new int[ans.size()][]);
+    }
+}
