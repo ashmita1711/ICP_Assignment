@@ -1,0 +1,22 @@
+//Combinations (77)
+
+//DFS + Backtracking
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result=new ArrayList<>();
+        List<Integer> comb =new ArrayList<>();
+        backtrack(1,comb,result,n,k);
+        return result;
+    }
+    private void backtrack(int start, List<Integer> comb, List<List<Integer>> result, int n, int k) {
+        if (comb.size()==k) {
+            result.add(new ArrayList<>(comb));
+            return;
+        }
+        for(int num=start; num<=n;num++) {
+            comb.add(num);
+            backtrack(num+1, comb, result,n,k);
+            comb.remove(comb.size()-1);
+        }
+    } 
+}
