@@ -1,0 +1,25 @@
+//Unique Paths(LeetCode Q.62)
+
+public class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][] ans = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(ans[i], -1);
+        }
+        return countPaths(0, 0, m, n, ans);
+    }
+    private int countPaths(int row, int col, int m, int n, int[][] ans) {
+        if (row == m - 1 && col == n - 1) {
+            return 1;
+        }
+        if (row >= m || col >= n) {
+            return 0;
+        }
+        if (ans[row][col] != -1) {
+            return ans[row][col];
+        }
+        ans[row][col] = countPaths(row + 1, col, m, n, ans) + 
+                        countPaths(row, col + 1, m, n, ans);
+        return ans[row][col];
+    }
+}
