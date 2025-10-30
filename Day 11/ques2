@@ -1,0 +1,37 @@
+// Nastya and Door(codeforces)
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int n=sc.nextInt();
+            int k=sc.nextInt();
+            int[] a=new int[n];
+            for(int i=0;i<n;i++){
+                a[i]=sc.nextInt();
+            }    
+            int[] pref=new int[n];
+            for(int i=1;i<n-1;i++){
+                if(a[i]>a[i-1] && a[i]>a[i+1]){
+                    pref[i]=1;
+                }
+            }
+            for(int i=1;i<n;i++){
+                pref[i]+=pref[i-1];
+            }
+            int maxPeaks=-1;
+            int best=0;
+            for (int i=0;i+k-1<n;i++){
+                int r=i+k-1;
+                int peaks=pref[r-1]-pref[i];
+                if(peaks>maxPeaks){
+                    maxPeaks=peaks;
+                    best=i;
+                }
+            }
+            System.out.println((maxPeaks+1) + " " + (best+1));
+        }
+    }
+}

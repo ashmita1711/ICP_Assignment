@@ -1,0 +1,26 @@
+// Nastya and Rice(codeforces)
+
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t=sc.nextInt(); 
+        while(t-->0){
+            long n=sc.nextLong();
+            long a=sc.nextLong();
+            long b=sc.nextLong();
+            long c=sc.nextLong();
+            long d=sc.nextLong();
+            long min=n*(a-b);
+            long max=n*(a+b);
+            long pack_Min=c-d;
+            long pack_Max=c+d;
+            if(max<pack_Min || min>pack_Max)
+                System.out.println("No");
+            else
+                System.out.println("Yes");
+        }
+        sc.close();
+    }
+}
